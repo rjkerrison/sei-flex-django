@@ -87,3 +87,31 @@ Once you've run the migrations, you can run
 > python manage.py runserver
 
 again. This time, it'll allow you to view you Django app in the browser, by default at http://localhost:8000/.
+
+## The admin app
+
+Django comes with a whole admin user section to the site pre-built. To log in we first need to create a user, which we can do like so:
+
+```
+python manage.py createsuperuser
+```
+
+This will run through the setting up a super user, a user that has access to the admin section of the site, and one that can make changes to the database contents.
+
+You can choose anything here, but we would recommend the following:
+
+```
+Username: admin
+Email: admin@ga.co
+Password: admin
+Password (again): admin
+Bypass password validation and create user anyway? [y/N]: y
+```
+
+You should now be able to log in to the admin section of the site by navigating to http://localhost:8000/admin/
+
+![Django Admin Dashboard](https://media.git.generalassemb.ly/user/15120/files/5e7fa380-c8e5-11e9-83e2-1db09ddad88a)
+
+Here you can add new users, and groups: collections of users that have the same permissions.
+
+We'll be looking at this again later in the module, but for now, let's log out.
