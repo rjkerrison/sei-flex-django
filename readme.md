@@ -14,3 +14,8 @@ Django handles the management of the database as well as serving data.
 4. Make a new repository which will have your django app in it
 5. Inside your repo, install `django` in a virtual environment: `pipenv install django`. This will create two files: `Pipfile` and `Pipfile.lock`. Commit them as your initial first commit.
 6. Add a `readme.md`!
+
+## Starting your Django api
+
+1. Start up a pipenv shell with `pipenv shell`
+2. Create your django app with `django-admin startproject api .`. This will create `manage.py` and a new folder `api` filled with python scripts as the starter for your django app. Commit the new files.
