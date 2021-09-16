@@ -28,3 +28,19 @@ INSTALLED_APPS = [
     'albums'
 ]
 ```
+
+## Creating a model
+
+Right now, `albums` is useless.
+Take a look at the models and views: there's nothing there.
+
+Let's add a model.
+
+```python
+class Album(models.Model):
+    title = models.CharField(max_length=50)
+    artist = models.CharField(max_length=50)
+    cover_image = models.CharField(max_length=200)
+```
+
+We have some fields, all of them strings!
