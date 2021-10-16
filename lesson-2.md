@@ -19,13 +19,13 @@ For this, we make a change to `settings.py` so that `albums` is counted among it
 
 ```python
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'albums'
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "albums",
 ]
 ```
 
@@ -44,3 +44,11 @@ class Album(models.Model):
 ```
 
 We have some fields, all of them strings!
+
+What do we do now? Same thing we do every time,
+
+```sh
+python manage.py runserver
+```
+
+And guess what?
