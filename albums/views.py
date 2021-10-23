@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from rest_framework import views, response, status
+
 from .models import Album
 
 # Create your views here.
 def index(request):
-    print(request)
-
     # grabbing what we need from database
-    list = Album.objects.all
+    list = Album.objects.all()
     # creating a context object
     context = {"albums": list}
 
@@ -16,44 +16,11 @@ def index(request):
     return render(request, "albums/index.html", context)
 
 
-# API handlers
-def albums(request):
-    if request.method == "GET":
-        return read(request)
-    if request.method == "POST":
-        return create(request)
+class AlbumListView(views.APIView):
+    def get(self, request):
+        albums = Album.objects.all()
+        return response.Response(albums, status=status.HTTP_200_OK)
 
-
-def album(request):
-    if request.method == "GET":
-        return read_one(request)
-    if request.method == "PATCH":
-        return update(request)
-    if request.method == "DELETE":
-        return delete(request)
-
-
-# CRUD TIME
-def create(request):
-    # something something
-    return HttpResponse("CREATE")
-
-
-def read(request):
-    # can we get albums back as json?
-    return HttpResponse("READ")
-
-
-def read_one(request):
-    # can we get one album back as json?
-    return HttpResponse("READ ONE")
-
-
-def update(request):
-    # can we update an album
-    return HttpResponse("UPDATE")
-
-
-def delete(request):
-    # can we delete an album
-    return HttpResponse("DELETE")
+    def post(self, request):
+        print(request.data)
+        return response.Response("POST!", status=status.HTTP_201_CREATED)
