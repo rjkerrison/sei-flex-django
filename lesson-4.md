@@ -16,6 +16,7 @@ Led by [Tristan](https://github.com/TrimHall)!
     - [Heroku deploy for the code](#heroku-deploy-for-the-code)
     - [Adding postgres](#adding-postgres)
     - [Syncing databases](#syncing-databases)
+    - [Finally: deploying](#finally-deploying)
 
 ## Overview
 
@@ -244,14 +245,6 @@ If you don't provide a name, heroku will give it a random one.
 
 You can view your heroku apps from the command line with `heroku apps` or by going to the [Heroku dashboard](https://dashboard.heroku.com/).
 
-To deploy, simply run
-
-```sh
-git push heroku main:main
-```
-
-Git is your deployment tool!
-
 ### Adding postgres
 
 We're going to create the postgresql addon,
@@ -282,3 +275,24 @@ PGUSER= PGPASSWORD= heroku pg:push postgres://localhost/ga-tunes postgresql-poin
 ```
 
 Remember to use your own app name in the end.
+
+### Finally: deploying
+
+Just before we deploy, we want to prevent Heroku from collecting static files.
+We don't need it, and it causes errors if it tries.
+
+```sh
+heroku config:set DISABLE_COLLECTSTATIC=1
+```
+
+With that done, we're one step away.
+
+To deploy, simply run
+
+```sh
+git push heroku main:main
+```
+
+Git is your deployment tool!
+
+Run `heroku open` to view the deployed site!
