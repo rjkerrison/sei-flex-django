@@ -9,6 +9,7 @@ Led by [Tristan](https://github.com/TrimHall)!
     - [Finding the true culprit](#finding-the-true-culprit)
   - [Using Postgresql in Django](#using-postgresql-in-django)
     - [Local Postgresql](#local-postgresql)
+      - [Django configuration](#django-configuration)
 
 ## Overview
 
@@ -101,4 +102,21 @@ you have to install the Python postgresql package, which is called `psycopg2`.
 
 ```sh
 pipenv install psycopg2
+```
+
+#### Django configuration
+
+There's a few steps to get Django to use our postgresql database.
+
+1. `settings.py` needs to point to the postgresql host
+
+```py
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "ga-tunes",
+        "HOST": "localhost",
+        "PORT": 5432,
+    }
+}
 ```
