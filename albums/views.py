@@ -20,7 +20,9 @@ def index(request):
 class AlbumListView(views.APIView):
     def get(self, request):
         albums = Album.objects.all()
-        serialized_albums = AlbumSerializer(albums, many=True)
+        serialized_albums = AlbumSerializer(
+            albums, many=True, context={"request": request}
+        )
         return response.Response(serialized_albums.data, status=status.HTTP_200_OK)
 
     def post(self, request):
