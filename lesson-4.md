@@ -121,13 +121,21 @@ There's a few further steps to get Django to use our postgresql database.
 
 1. `settings.py` needs to point to the postgresql host
 
-```py
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "ga-tunes",
-        "HOST": "localhost",
-        "PORT": 5432,
-    }
-}
-```
+   ```py
+   DATABASES = {
+       "default": {
+           "ENGINE": "django.db.backends.postgresql_psycopg2",
+           "NAME": "ga-tunes",
+           "HOST": "localhost",
+           "PORT": 5432,
+       }
+   }
+   ```
+
+2. Run the migrations: your new database knows nothing of your schemas so far.
+
+   ```sh
+   python manage.py migrate
+   ```
+
+   This is one of the reasons migrations are so useful. Creating new local databases that mirror production is very simple. Perfect for when you're onboarding new developers to your team.
