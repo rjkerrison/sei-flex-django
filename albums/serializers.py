@@ -8,6 +8,7 @@ class AlbumSerializer(serializers.ModelSerializer):
         model = Album
         # the fields to include in the serialization
         fields = "__all__"
+        # Important bit: the depth adds related fields' information into the response
         depth = 1
 
 
