@@ -11,6 +11,10 @@ Led by [Tristan](https://github.com/TrimHall)!
     - [Local Postgresql](#local-postgresql)
       - [Create a database](#create-a-database)
       - [Django configuration](#django-configuration)
+  - [Full deploy](#full-deploy)
+    - [Heroku deploy for the code](#heroku-deploy-for-the-code)
+    - [Adding postgres](#adding-postgres)
+    - [Syncing databases](#syncing-databases)
 
 ## Overview
 
@@ -151,3 +155,116 @@ There's a few further steps to get Django to use our postgresql database.
 4. Go ahead and `python manage.py runserver`.
 
 Now you'll have to recreate all the albums etc via Postman or via the Admin site.
+
+You can also access the database using `psql`.
+You can then query the database using SQL.
+
+```sh
+sh-3.2$ psql ga-tunes
+psql (14.0)
+Type "help" for help.
+
+ga-tunes=# select * from albums_album
+ga-tunes-# ;
+ id | title | cover_image | artist_id
+----+-------+-------------+-----------
+(0 rows)
+
+ga-tunes=#
+```
+
+There are some handy things you can do like viewing all tables with the `\dt` command.
+
+```sh
+ga-tunes=# \dt
+                  List of relations
+ Schema |            Name            | Type  | Owner
+--------+----------------------------+-------+-------
+ public | albums_album               | table | rjk
+ public | artists_artist             | table | rjk
+ public | artists_artist_members     | table | rjk
+ public | artists_member             | table | rjk
+ public | auth_group                 | table | rjk
+ public | auth_group_permissions     | table | rjk
+ public | auth_permission            | table | rjk
+ public | auth_user                  | table | rjk
+ public | auth_user_groups           | table | rjk
+ public | auth_user_user_permissions | table | rjk
+ public | django_admin_log           | table | rjk
+ public | django_content_type        | table | rjk
+ public | django_migrations          | table | rjk
+ public | django_session             | table | rjk
+(14 rows)
+```
+
+Find out more about this kind of thing on the
+[postgresql tutorial's show tables](https://www.postgresqltutorial.com/postgresql-show-tables/) explainer.
+
+## Full deploy
+
+Let's take a look at how to put our backend online.
+
+### Heroku deploy for the code
+
+If you haven't already, you'll need to set up Heroku.
+
+1. Sign up for an account at [heroku.com](https://heroku.com)
+2. Install the heroku CLI
+   ```sh
+   brew install heroku/brew/heroku
+   ```
+3. Login on the CLI
+   ```sh
+   heroku login
+   ```
+   and follow the instructions.
+
+With all that done, you're ready to deploy.
+
+```sh
+heroku create <your-app-name>
+```
+
+will create the app for you.
+If you don't provide a name, heroku will give it a random one.
+
+You can view your heroku apps from the command line with `heroku apps` or by going to the [Heroku dashboard](https://dashboard.heroku.com/).
+
+To deploy, simply run
+
+```sh
+git push heroku main:main
+```
+
+Git is your deployment tool!
+
+### Adding postgres
+
+We're going to create the postgresql addon,
+and then grab the newly created database URL from the config.
+
+```sh
+heroku addons:create heroku-postgresql:hobby-dev
+heroku config -s | grep DATABASE_URL
+```
+
+Keep that URL handy.
+
+Or run
+
+```sh
+heroku pg:info
+```
+
+the last line should tell you your postgresql addon name,
+e.g. `postgresql-pointy-43826`.
+
+### Syncing databases
+
+To push your local databases to your heroku postgres, run e.g.
+
+```sh
+PGUSER= PGPASSWORD= heroku pg:push postgres://localhost/ga-tunes postgresql-pointy-43826
+```
+
+Remember to use your own app name in the end.
