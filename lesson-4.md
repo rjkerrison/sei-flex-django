@@ -106,7 +106,7 @@ We need to create a database – so far, we've only installed a client.
 createdb ga-tunes
 ```
 
-It's weirdly easy.
+It's weirdly easy. See [Postgresql Documentation 1.3 Creating a Database](https://www.postgresql.org/docs/14/tutorial-createdb.html) for more.
 
 #### Django configuration
 
@@ -138,4 +138,16 @@ There's a few further steps to get Django to use our postgresql database.
    python manage.py migrate
    ```
 
-   This is one of the reasons migrations are so useful. Creating new local databases that mirror production is very simple. Perfect for when you're onboarding new developers to your team.
+   This is one of the reasons migrations are so useful.
+   Creating new local databases that mirror production is very simple.
+   Perfect for when you're onboarding new developers to your team.
+
+3. Recreate superusers. They don't exist in your new database.
+
+   ```sh
+   python manage.py createsuperuser
+   ```
+
+4. Go ahead and `python manage.py runserver`.
+
+Now you'll have to recreate all the albums etc via Postman or via the Admin site.
