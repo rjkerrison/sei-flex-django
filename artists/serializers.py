@@ -8,6 +8,7 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
         model = Artist
         # the fields to include in the serialization
         fields = "__all__"
+        depth = 2
 
 
 class MemberSerializer(serializers.HyperlinkedModelSerializer):
