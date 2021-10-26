@@ -9,6 +9,7 @@ Led by [Tristan](https://github.com/TrimHall)!
     - [Finding the true culprit](#finding-the-true-culprit)
   - [Using Postgresql in Django](#using-postgresql-in-django)
     - [Local Postgresql](#local-postgresql)
+      - [Create a database](#create-a-database)
       - [Django configuration](#django-configuration)
 
 ## Overview
@@ -97,16 +98,26 @@ If this looks familiar, it's because we did the same thing to start the mongodb 
 When you've got this working, you can check your postgres config with `pg_config`.
 It should return what looks like a lot of environment variables (which is exactly what it is).
 
-Finally, to get us ready to use postgresql,
+#### Create a database
+
+We need to create a database – so far, we've only installed a client.
+
+```sh
+createdb ga-tunes
+```
+
+It's weirdly easy.
+
+#### Django configuration
+
+To get us ready to use postgresql,
 you have to install the Python postgresql package, which is called `psycopg2`.
 
 ```sh
 pipenv install psycopg2
 ```
 
-#### Django configuration
-
-There's a few steps to get Django to use our postgresql database.
+There's a few further steps to get Django to use our postgresql database.
 
 1. `settings.py` needs to point to the postgresql host
 
