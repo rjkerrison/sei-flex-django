@@ -123,6 +123,13 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+# Location where django collect all static files
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# Location where you will store your static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "project_name/static")]
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

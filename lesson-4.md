@@ -12,6 +12,7 @@ Led by [Tristan](https://github.com/TrimHall)!
       - [Create a database](#create-a-database)
       - [Django configuration](#django-configuration)
   - [Full deploy](#full-deploy)
+    - [Configuration](#configuration)
     - [Heroku deploy for the code](#heroku-deploy-for-the-code)
     - [Adding postgres](#adding-postgres)
     - [Syncing databases](#syncing-databases)
@@ -203,6 +204,19 @@ Find out more about this kind of thing on the
 ## Full deploy
 
 Let's take a look at how to put our backend online.
+
+### Configuration
+
+Before we deploy, we need to have a few settings ready in our `settings.py`:
+
+```py
+# Location where django collect all static files
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# Location where you will store your static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "project_name/static")]
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+```
 
 ### Heroku deploy for the code
 
