@@ -52,7 +52,7 @@ class AlbumDetailView(views.APIView):
     def delete(self, request, id):
         album = self.get_album_by_id(id)
         album.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return response.Response(status=status.HTTP_204_NO_CONTENT)
 
     def put(self, request, id):
         album = self.get_album_by_id(id)
