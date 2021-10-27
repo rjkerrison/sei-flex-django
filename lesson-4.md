@@ -298,20 +298,15 @@ Remember to use your own app name in the end.
 
 ### Finally: deploying
 
-Just before we deploy, we want to prevent Heroku from collecting static files.
-We don't need it, and it causes errors if it tries.
-
-```sh
-heroku config:set DISABLE_COLLECTSTATIC=1
-```
-
-With that done, we're one step away.
+With all that done, we're one step away.
 
 Create the Procfile as we have here, i.e.
 
 ```
 web:  gunicorn api.wsgi
 ```
+
+The `Procfile` tells Heroku what to run once we've deployed.
 
 Now to deploy, simply run
 
