@@ -18,10 +18,13 @@ Led by [Tristan](https://github.com/TrimHall)!
     - [Adding postgres](#adding-postgres)
     - [Syncing databases](#syncing-databases)
     - [Finally: deploying](#finally-deploying)
+  - [Example](#example)
 
 ## Overview
 
 The main goal of Lesson 4 is to replace our crumby _db.sqlite3_ file with a real-life database.
+
+As a bonus, let's get our API available in the cloud.
 
 ## SQL Intro: A Murder Mystery
 
@@ -334,3 +337,7 @@ git push heroku main:main
 Git is your deployment tool!
 
 Run `heroku open` to view the deployed site!
+
+## Example
+
+An example is available at [https://afternoon-forest-14959.herokuapp.com/admin/](https://afternoon-forest-14959.herokuapp.com/admin/) etc.
