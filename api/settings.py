@@ -130,10 +130,6 @@ STATIC_URL = "/static/"
 
 # Location where django collect all static files
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-# Location where you will store your static files
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "project_name/static")]
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES["default"].update(db_from_env)
