@@ -234,6 +234,15 @@ DATABASES["default"].update(db_from_env)
 
 and you'll likely need to `import dj_database_url` and `import os` at the top of the file if you haven't already.
 
+You also need to change the `ALLOWED_HOSTS` to include your app, e.g.
+
+```py
+ALLOWED_HOSTS = [
+    "afternoon-forest-14959.herokuapp.com",
+    "0.0.0.0",
+]
+```
+
 ### Heroku deploy for the code
 
 If you haven't already, you'll need to set up Heroku.
