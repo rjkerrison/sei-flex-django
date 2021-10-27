@@ -11,6 +11,7 @@ Led by [Tristan](https://github.com/TrimHall)!
     - [Local Postgresql](#local-postgresql)
       - [Create a database](#create-a-database)
       - [Django configuration](#django-configuration)
+      - [SQL on our local Postgresql](#sql-on-our-local-postgresql)
   - [Full deploy](#full-deploy)
     - [Dependenices](#dependenices)
     - [Configuration](#configuration)
@@ -205,6 +206,40 @@ ga-tunes=# \dt
 
 Find out more about this kind of thing on the
 [postgresql tutorial's show tables](https://www.postgresqltutorial.com/postgresql-show-tables/) explainer.
+
+#### SQL on our local Postgresql
+
+If we were to add (via API or admin site), some data around _Arctic Monkeys_ and _The Last Shadow Puppets_,
+including their members and at least one album each,
+we could query our database to find albums per band member and see how much of a busybody Alex Turner is.
+
+For this, we'll have to `join` our tables.
+In our `psql ga-tunes` shell, we can run the following SQL query.
+
+```sql
+select m.name, a.title from albums_album a
+join artists_artist b on b.id = a.artist_id
+join artists_artist_members am on am.artist_id = b.id
+join artists_member m on m.id = am.member_id
+order by m.name
+```
+
+The `join` means we want to link one table's data to another.
+`join artists_artist b on b.id = a.artist_id` means that we want to link the artist table to the album table based on the id.
+This is the sort of thing that Django handles for us behind the scenes when fetching model fields for our serializers!
+
+The response to the above query is as follows:
+
+```
+     name      |               title
+---------------+-----------------------------------
+ Alex Turner   | The Age of The Understatement
+ Alex Turner   | Tranquility Base Hotel and Casino
+ John Lennon   | The Beatles
+ Miles Kane    | The Age of The Understatement
+ Nick O'Malley | Tranquility Base Hotel and Casino
+(5 rows)
+```
 
 ## Full deploy
 
