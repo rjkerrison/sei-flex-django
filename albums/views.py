@@ -29,6 +29,7 @@ class AlbumListView(views.APIView):
         print(request.data)
         # create an Album instance from the request data
         album_to_add = AlbumSerializer(data=request.data)
+
         # save the Album to database
         if album_to_add.is_valid():
             album_to_add.save()

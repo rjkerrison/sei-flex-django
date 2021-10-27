@@ -5,6 +5,7 @@ Led by [Tristan](https://github.com/TrimHall)!
 - [Lesson 5](#lesson-5)
   - [Overview](#overview)
   - [Test Driven Development](#test-driven-development)
+    - [Writing passing code](#writing-passing-code)
 
 ## Overview
 
@@ -32,3 +33,8 @@ Take a look at `AlbumTests.test_create_album` in `albums/tests.py`.
 
 We can run that test (and any others we might have) with `python manage.py test`.
 Right now, it's failing where it checks the artist — but the goal is to get it to pass!
+
+### Writing passing code
+
+Now that we have a test which is failing, we only have one job:
+write code to make it pass!

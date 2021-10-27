@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework import routers
 
 from artists.views import ArtistViewSet, MemberViewSet
+from . import views
 
 router = routers.DefaultRouter()
 router.register("artists", ArtistViewSet)
