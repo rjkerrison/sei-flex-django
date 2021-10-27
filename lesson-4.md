@@ -213,7 +213,7 @@ Throughout these steps, there's going to be a few python packages we'll need.
 Let's install them all now!
 
 ```sh
-pipenv install pytz dj_database_url gunicorn
+pipenv install pytz dj_database_url gunicorn whitenoise
 ```
 
 ### Configuration
@@ -237,6 +237,23 @@ ALLOWED_HOSTS = [
     "afternoon-forest-14959.herokuapp.com",
     "0.0.0.0",
 ]
+```
+
+Django also doesn't support production fileserving,
+so to cover this, we have some whitenoise settings to add.
+
+```py
+MIDDLEWARE = [
+    ...,
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+]
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ```
 
 ### Heroku deploy for the code
