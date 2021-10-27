@@ -341,3 +341,11 @@ Run `heroku open` to view the deployed site!
 ## Example
 
 An example is available at [https://afternoon-forest-14959.herokuapp.com/admin/](https://afternoon-forest-14959.herokuapp.com/admin/) etc.
+
+
+## Further reading
+
+Handy guides (albeit none of them completely aligned with our setup):
+
+- [Heroku: Getting Started With Python](https://devcenter.heroku.com/articles/getting-started-with-python?singlepage=true#deploy-the-app)
+- [Heroku: Django Static Assets](https://devcenter.heroku.com/articles/django-assets)
