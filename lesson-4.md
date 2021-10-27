@@ -12,6 +12,7 @@ Led by [Tristan](https://github.com/TrimHall)!
       - [Create a database](#create-a-database)
       - [Django configuration](#django-configuration)
   - [Full deploy](#full-deploy)
+    - [Dependenices](#dependenices)
     - [Configuration](#configuration)
     - [Heroku deploy for the code](#heroku-deploy-for-the-code)
     - [Adding postgres](#adding-postgres)
@@ -206,6 +207,15 @@ Find out more about this kind of thing on the
 
 Let's take a look at how to put our backend online.
 
+### Dependenices
+
+Throughout these steps, there's going to be a few python packages we'll need.
+Let's install them all now!
+
+```sh
+pipenv install pytz dj_database_url gunicorn
+```
+
 ### Configuration
 
 Before we deploy, we need to have a few settings ready in our `settings.py`:
@@ -292,7 +302,13 @@ heroku config:set DISABLE_COLLECTSTATIC=1
 
 With that done, we're one step away.
 
-To deploy, simply run
+Create the Procfile as we have here, i.e.
+
+```
+web:  gunicorn api.wsgi
+```
+
+Now to deploy, simply run
 
 ```sh
 git push heroku main:main
