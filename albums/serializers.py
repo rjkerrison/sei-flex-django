@@ -1,8 +1,11 @@
 from rest_framework import serializers
 from .models import Album
+from artists.lite_serializers import ArtistLiteSerializer
 
 
 class AlbumSerializer(serializers.ModelSerializer):
+    artist = ArtistLiteSerializer()
+
     class Meta:
         # the model that the serializer is based on
         model = Album
@@ -10,13 +13,13 @@ class AlbumSerializer(serializers.ModelSerializer):
         fields = (
             "title",
             "cover_image",
-            "artist_name",
+            "artist",
         )
-        extra_kwargs = {
-            "artist_name": {
-                "required": True,
-            },
-        }
+        # extra_kwargs = {
+        #     "artist_name": {
+        #         "required": True,
+        #     },
+        # }
         # Important bit: the depth adds related fields' information into the response
         depth = 1
 
@@ -28,9 +31,9 @@ class AlbumSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         print(validated_data)
-        artist_name = validated_data["artist"]
+        artist = validated_data.pop("artist")
 
-        print("{0:-50}".format(artist_name))
+        print("{0:-50}".format(artist.name))
 
         print(user, validated_data)
 

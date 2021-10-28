@@ -18,7 +18,9 @@ class AlbumTests(APITestCase):
         # Define some data that we can build our test around
         data = {
             "title": "I See You",
-            "artist_name": "The xx",
+            "artist": {
+                "name": "The xx",
+            },
             "cover_image": "https://placeholder.it/300x300",
         }
         # Execute the test case (this is boilerplate)
