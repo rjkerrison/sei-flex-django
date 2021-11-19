@@ -115,3 +115,5 @@ You should now be able to log in to the admin section of the site by navigating 
 Here you can add new users, and groups: collections of users that have the same permissions.
 
 We'll be looking at this again later in the module, but for now, let's log out.
+
+[Next: lesson-2](./lesson-2.md)
